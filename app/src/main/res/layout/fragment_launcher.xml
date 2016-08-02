@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/content_launcher"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.joneslee.hypnos_installer.LauncherActivityFragment"
+    tools:showIn="@layout/activity_launcher">
+
+    <Button
+        android:id="@+id/root_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Root安装"
+        app:layout_constraintLeft_toLeftOf="@+id/content_launcher"
+        app:layout_constraintTop_toTopOf="@+id/content_launcher"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@+id/content_launcher"/>
+
+    <Button
+        android:id="@+id/accessibility_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accessible安装"
+        app:layout_constraintLeft_toLeftOf="@+id/content_launcher"
+        app:layout_constraintTop_toBottomOf="@+id/root_button"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@+id/content_launcher"/>
+
+    <Button
+        android:id="@+id/auto_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto安装"
+        app:layout_constraintLeft_toLeftOf="@+id/content_launcher"
+        app:layout_constraintTop_toBottomOf="@+id/accessibility_button"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@+id/content_launcher"/>
+
+</android.support.constraint.ConstraintLayout>

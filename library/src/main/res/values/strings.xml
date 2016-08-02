@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="accessibility_setting_description">辅助应用安装</string>
+</resources>
