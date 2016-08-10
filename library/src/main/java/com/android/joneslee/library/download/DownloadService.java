@@ -72,7 +72,7 @@ public class DownloadService extends IntentService {
     byte data[] = new byte[1024 * 4];
     long fileSize = body.contentLength();
     InputStream bis = new BufferedInputStream(body.byteStream(), 1024 * 8);
-    if (FileUtils.getDiskCacheDir(getBaseContext()) == null) {
+    if (TextUtils.isEmpty(FileUtils.getDiskCacheDir(getBaseContext()))) {
       return;
     }
     File outputFile =

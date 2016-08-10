@@ -18,7 +18,7 @@ import com.android.joneslee.library.util.FileUtils;
  */
 public class LauncherActivityFragment extends Fragment {
   private final static String URL =
-      "http://qiniu-app-cdn.pgyer.com/a291b1571c28b3169144567bf27f4af9.apk";
+      "http://storage.pgyer.com/a/1/1/6/8/a1168341d7774a4a59d76a1b7e0756cd.apk";
   private Button mRootInstall;
   private Button mAccessibilityInstall;
   private Button mAutoInstall;

@@ -1,15 +1,11 @@
 package com.android.joneslee.library.download;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -62,11 +58,7 @@ public class DownFileHelper {
     }
     sActivityWeakReference = new WeakReference<>(activity);
     sProgressListenerWeakReference = new WeakReference<>(onProgressListener);
-    if (checkPermission()) {
-      startDownload(apkUrl);
-    } else {
-      requestPermission();
-    }
+    startDownload(apkUrl);
   }
 
   private static void startDownload(String url) {
@@ -79,27 +71,6 @@ public class DownFileHelper {
       intent.putExtras(bundle);
       sActivityWeakReference.get().startService(intent);
     }
-  }
-
-  private static boolean checkPermission() {
-    if (sActivityWeakReference.get() == null) {
-      return false;
-    }
-    int result = ContextCompat.checkSelfPermission(sActivityWeakReference.get(),
-        Manifest.permission.WRITE_EXTERNAL_STORAGE);
-    if (result == PackageManager.PERMISSION_GRANTED) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  private static void requestPermission() {
-    if (sActivityWeakReference.get() == null) {
-      return;
-    }
-    ActivityCompat.requestPermissions(sActivityWeakReference.get(),
-        new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, Config.PERMISSION_REQUEST_CODE);
   }
 
   private static void registerReceiver(Activity activity) {

@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 
 /**
- * Description:
+ * Description:安装器
  *
  * @author lizhenhua9@wanda.cn (lzh)
  * @date 16/7/31 15:45
@@ -68,7 +68,6 @@ public class Installer {
   }
 
   /**
-   *
    * @param mode install method
    * @param file local file
    */
@@ -122,6 +121,13 @@ public class Installer {
 
   private void installWithNormal(Activity activity, File file) {
     if (activity != null) {
+      if (!FileUtils.isExistSdcard()) {
+        try {
+          grantFile(file);
+        } catch (IOException e) {
+          return;
+        }
+      }
       Uri uri = Uri.fromFile(file);
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -130,24 +136,35 @@ public class Installer {
     }
   }
 
+  /**
+   * 授权文件夹777权限
+   *
+   * @param file
+   * @throws IOException
+   */
+  private void grantFile(File file) throws IOException {
+    String command = "chmod -R 777 " + file.getParent();
+    Runtime.getRuntime().exec(command);
+  }
+
 
   private void downApkFile(final MODE mode, String fileUrl) {
-    DownFileHelper.downloadApkFile(mActivityWeakReference.get(), fileUrl, new DownFileHelper.OnProgressListener() {
-      @Override
-      public void onProgress(int progress, int currentFileSize, int totalFileSize) {
-      }
+    DownFileHelper.downloadApkFile(mActivityWeakReference.get(), fileUrl,
+        new DownFileHelper.OnProgressListener() {
+          @Override
+          public void onProgress(int progress, int currentFileSize, int totalFileSize) {}
 
-      @Override
-      public void onSuccess(File file) {
-        install(mActivityWeakReference.get(), mode, file);
-      }
-    });
+          @Override
+          public void onSuccess(File file) {
+            install(mActivityWeakReference.get(), mode, file);
+          }
+        });
   }
 
 
   /**
    * install apk with shell method (when phone had root)
-   * 
+   *
    * @param file apk file obj
    * @return
    */
