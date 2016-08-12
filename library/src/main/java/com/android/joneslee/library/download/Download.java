@@ -20,7 +20,7 @@ public class Download implements Parcelable {
   private int progress;
   private int currentFileSize;
   private int totalFileSize;
-  private File file;
+  private String filePath;
 
   public int getProgress() {
     return progress;
@@ -42,16 +42,16 @@ public class Download implements Parcelable {
     return totalFileSize;
   }
 
-  public void setFile(File file) {
-    this.file = file;
-  }
-
-  public File getFile() {
-    return file;
-  }
-
   public void setTotalFileSize(int totalFileSize) {
     this.totalFileSize = totalFileSize;
+  }
+
+  public String getFilePath() {
+    return filePath;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
   }
 
   @Override
@@ -61,17 +61,17 @@ public class Download implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-
     dest.writeInt(progress);
     dest.writeInt(currentFileSize);
     dest.writeInt(totalFileSize);
+    dest.writeString(filePath);
   }
 
   private Download(Parcel in) {
-
     progress = in.readInt();
     currentFileSize = in.readInt();
     totalFileSize = in.readInt();
+    filePath = in.readString();
   }
 
   public static final Parcelable.Creator<Download> CREATOR = new Parcelable.Creator<Download>() {

@@ -39,9 +39,9 @@ public class DownFileHelper {
         }
         if (download.getProgress() == 100) {
           Log.d("DownFileHelper",
-              "File Download Complete : " + download.getFile().getAbsolutePath());
+              "File Download Complete : " + download.getFilePath());
           if (sProgressListenerWeakReference.get() != null) {
-            sProgressListenerWeakReference.get().onSuccess(download.getFile());
+            sProgressListenerWeakReference.get().onSuccess(new File(download.getFilePath()));
           }
         } else {
           Log.d("DownFileHelper", String.format("Downloaded (%d/%d) MB",

@@ -98,7 +98,7 @@ public class DownloadService extends IntentService {
       }
       output.write(data, 0, count);
     }
-    onDownloadComplete(outputFile);
+    onDownloadComplete(outputFile.getAbsolutePath());
     output.flush();
     output.close();
     bis.close();
@@ -118,9 +118,9 @@ public class DownloadService extends IntentService {
     LocalBroadcastManager.getInstance(DownloadService.this).sendBroadcast(intent);
   }
 
-  private void onDownloadComplete(File file) {
+  private void onDownloadComplete(String filePath) {
     Download download = new Download();
-    download.setFile(file);
+    download.setFilePath(filePath);
     download.setProgress(100);
     sendIntent(download);
     notificationManager.cancel(0);

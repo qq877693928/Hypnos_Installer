@@ -18,7 +18,7 @@ import com.android.joneslee.library.util.FileUtils;
  */
 public class LauncherActivityFragment extends Fragment {
   private final static String URL =
-      "http://storage.pgyer.com/a/1/1/6/8/a1168341d7774a4a59d76a1b7e0756cd.apk";
+      "https://github.com/qq877693928/Hypnos_Installer/blob/master/art/app-debug.apk";
   private Button mRootInstall;
   private Button mAccessibilityInstall;
   private Button mAutoInstall;
