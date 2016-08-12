@@ -70,6 +70,9 @@ public class DownloadService extends IntentService {
   private void downloadFile(ResponseBody body) throws IOException {
     int count;
     byte data[] = new byte[1024 * 4];
+    if(body == null){
+      return;
+    }
     long fileSize = body.contentLength();
     InputStream bis = new BufferedInputStream(body.byteStream(), 1024 * 8);
     if (TextUtils.isEmpty(FileUtils.getDiskCacheDir(getBaseContext()))) {
